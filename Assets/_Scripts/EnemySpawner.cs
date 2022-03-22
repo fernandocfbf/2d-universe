@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour{
     public GameObject Enemy;
+    GameManager gm;
 
-    // Start is called before the first frame update
     void Start(){
+        gm = GameManager.GetInstance();
+        GameManager.changeStateDelegate += Build;
         Build();
     }
 
-    // Update is called once per frame
-    void Update(){
-        
-    }
-
     void Build(){
-        for(int i = 2; i < 9; i++){
-            for(int j = 0; j < 4; j++){
-                Vector3 position = new Vector3(-9 + 1.75f * i, 4 - 1.3f * j);
-                Instantiate(Enemy, position, Quaternion.identity, transform);
-            }   
+        if (gm.gameState == GameManager.GameState.GAME){
+            foreach (Transform child in transform) {
+                GameObject.Destroy(child.gameObject);
+            }
+            for(int i = 2; i < 9; i++){
+                for(int j = 0; j < 4; j++){
+                    Vector3 position = new Vector3(-9 + 1.75f * i, 4 - 1.3f * j);
+                    Instantiate(Enemy, position, Quaternion.identity, transform);
+                }   
+            }
         }
     }
 }

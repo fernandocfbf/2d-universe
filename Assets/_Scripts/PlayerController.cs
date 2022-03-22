@@ -7,14 +7,14 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     public AudioClip shootSFX;
     private Vector3 currentPosition;
     public GameObject bullet;
+    GameManager gm;
     public Transform gun01;
     public float shootDelay = 1.0f;
     private float lastShootTimestamp = 0.0f;
-    private int lifes;
 
     public void Start(){
-        lifes = 10;
         animator = GetComponent<Animator>();
+        gm = GameManager.GetInstance();
     }
 
     private void Update(){
@@ -30,11 +30,12 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     public void TakeDamage(){
-        lifes --;
-        if (lifes <= 0) Die();
+        gm.lifes --;
+        if (gm.lifes <= 0) Die();
     }
 
     public void Die(){
+        gm.ChangeState(GameManager.GameState.LOSE);
         Destroy(gameObject);
     }
 
