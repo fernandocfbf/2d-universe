@@ -28,6 +28,19 @@ public class GameManager{
         if (gameState == GameState.LOSE && nextState == GameState.GAME){
             Reset();
         }
+
+        if (nextState == GameState.PAUSE || nextState == GameState.LOSE){
+            Time.timeScale = 0;
+        } 
+        
+        else if (gameState == GameState.PAUSE && nextState == GameState.MENU){
+            Time.timeScale = 0;
+        }
+
+        else Time.timeScale = 1.0f;
+        
+        
+
         gameState = nextState;
         changeStateDelegate();
     }

@@ -13,10 +13,11 @@ public class PlayerSpawner : MonoBehaviour{
     }
 
     void BuildPlayer(){
-        Debug.Log("Here!");
-        Debug.Log(gm.gameState);
         if(gm.gameState == GameManager.GameState.GAME){
-            Vector3 position = new Vector3(0, 0, 0);
+            foreach (Transform child in transform) {
+                GameObject.Destroy(child.gameObject);
+            }
+            Vector3 position = new Vector3(0, -1f, 0);
             Instantiate(Player, position, Quaternion.identity, transform);
         }
     }

@@ -18,7 +18,10 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     private void Update(){
+        if (gm.gameState != GameManager.GameState.GAME) return;
         if(Input.GetAxisRaw("Fire1") != 0) Shoot();
+        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME)
+            gm.ChangeState(GameManager.GameState.PAUSE);
     }
 
     public void Shoot(){
@@ -40,6 +43,7 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     void FixedUpdate(){
+        if (gm.gameState != GameManager.GameState.GAME) return;
         float yInput = Input.GetAxis("Vertical");
         float xInput = Input.GetAxis("Horizontal");
         Thrust(xInput, yInput);

@@ -35,12 +35,14 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     private void FixedUpdate(){
-        angle += 0.05f;
-        Mathf.Clamp(angle, 0.0f, 1.0f * Mathf.PI);
-        float x = Mathf.Sin(angle);
-        float y = Mathf.Cos(angle);
-        Thrust(x, y);
-        if (x != 0 || y != 0) animator.SetFloat("velocity", 1.0f);
-        else animator.SetFloat("velocity", 0.0f);
+        if (gm.gameState == GameManager.GameState.GAME){
+            angle += 0.05f;
+            Mathf.Clamp(angle, 0.0f, 1.0f * Mathf.PI);
+            float x = Mathf.Sin(angle);
+            float y = Mathf.Cos(angle);
+            Thrust(x, y);
+            if (x != 0 || y != 0) animator.SetFloat("velocity", 1.0f);
+            else animator.SetFloat("velocity", 0.0f);
+        }
     }
 }
