@@ -7,18 +7,21 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     public AudioClip shootSFX;
     private Vector3 currentPosition;
     public GameObject bullet;
+    GameManager gm;
     public Transform gun01;
     public float shootDelay = 1.0f;
     private float lastShootTimestamp = 0.0f;
-    private int lifes;
 
     public void Start(){
-        lifes = 10;
         animator = GetComponent<Animator>();
+        gm = GameManager.GetInstance();
     }
 
     private void Update(){
+        if (gm.gameState != GameManager.GameState.GAME) return;
         if(Input.GetAxisRaw("Fire1") != 0) Shoot();
+        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME)
+            gm.ChangeState(GameManager.GameState.PAUSE);
     }
 
     public void Shoot(){
@@ -30,15 +33,17 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     public void TakeDamage(){
-        lifes --;
-        if (lifes <= 0) Die();
+        gm.lifes --;
+        if (gm.lifes <= 0) Die();
     }
 
     public void Die(){
+        gm.ChangeState(GameManager.GameState.LOSE);
         Destroy(gameObject);
     }
 
     void FixedUpdate(){
+        if (gm.gameState != GameManager.GameState.GAME) return;
         float yInput = Input.GetAxis("Vertical");
         float xInput = Input.GetAxis("Horizontal");
         Thrust(xInput, yInput);
