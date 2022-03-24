@@ -16,11 +16,12 @@ public class EnemySpawner : MonoBehaviour{
     }
 
     void Build(){
-        for(int i = 2; i < 9; i++){
-            for(int j = 0; j < 4; j++){
-                Vector3 position = new Vector3(-9 + 1.75f * i, 4 - 1.3f * j);
+        // for(int i = 2; i < 9; i++){
+        //     for(int j = 0; j < 4; j++){
+                // Vector3 position = new Vector3(-9 + 1.75f * i, 4 - 1.3f * j);
+                Vector3 position = new Vector3(-9 + 1.75f * 2, 4 - 1.3f * 0);
                 Instantiate(Enemy, position, Quaternion.identity, transform);
-            }   
-        }
+        //     }   
+        // }
     }
 }
