@@ -39,8 +39,6 @@ public class GameManager{
 
         else Time.timeScale = 1.0f;
         
-        
-
         gameState = nextState;
         changeStateDelegate();
     }
