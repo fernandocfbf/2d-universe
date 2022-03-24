@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     Animator animator;
+    public GameObject tiro;
     GameManager gm;
     float angle = 0;
 
@@ -18,7 +19,8 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
 
     public void Shoot()
     {
-        throw new System.NotImplementedException();
+        Instantiate(tiro, transform.position, Quaternion.identity);
+      //throw new System.NotImplementedException();
     }
 
     public void TakeDamage(){
