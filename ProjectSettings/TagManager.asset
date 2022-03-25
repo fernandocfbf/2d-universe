@@ -6,6 +6,7 @@ TagManager:
   tags:
   - enemy
   - Player Bullet
+  - Life
   layers:
   - Default
   - TransparentFX
