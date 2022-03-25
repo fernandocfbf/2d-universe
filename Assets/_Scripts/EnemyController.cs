@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     Animator animator;
+    public GameObject tiro;
+    GameManager gm;
+    float angle = 0;
 
     private void Start(){
         animator = GetComponent<Animator>();
+        gm = GameManager.GetInstance();
     }
 
     private void Update(){
@@ -15,7 +19,8 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
 
     public void Shoot()
     {
-        throw new System.NotImplementedException();
+        Instantiate(tiro, transform.position, Quaternion.identity);
+      //throw new System.NotImplementedException();
     }
 
     public void TakeDamage(){
@@ -23,19 +28,23 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     public void Die(){
+        CalculatePoints();
         Destroy(gameObject);
     }
 
-    float angle = 0;
+    private void CalculatePoints(){
+        gm.points ++;
+    }
 
-    private void FixedUpdate()
-    {
-        angle += 0.05f;
-        Mathf.Clamp(angle, 0.0f, 1.0f * Mathf.PI);
-        float x = Mathf.Sin(angle);
-        float y = Mathf.Cos(angle);
-        Thrust(x, y);
-        if (x != 0 || y != 0) animator.SetFloat("velocity", 1.0f);
-        else animator.SetFloat("velocity", 0.0f);
+    private void FixedUpdate(){
+        if (gm.gameState == GameManager.GameState.GAME){
+            angle += 0.5f;
+            Mathf.Clamp(angle, 0.0f, 1.0f * Mathf.PI);
+            float x = Mathf.Sin(angle);
+            float y = Mathf.Cos(angle);
+            Thrust(x, y);
+            if (x != 0 || y != 0) animator.SetFloat("velocity", 1.0f);
+            else animator.SetFloat("velocity", 0.0f);
+        }
     }
 }
