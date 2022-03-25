@@ -8,7 +8,7 @@ public class ShotBehaviour : SteerableBehaviour{
     }
 
     void Update(){
-        Thrust(0, 1);
+        Thrust(1, 0);
         Vector2 posicaoViewport = Camera.main.WorldToViewportPoint(transform.position);
         if ( posicaoViewport.x < 0 ||
             posicaoViewport.x > 1 ||
