@@ -17,8 +17,6 @@ public class PlayerSpawner : MonoBehaviour{
             foreach (Transform child in transform) {
                 GameObject.Destroy(child.gameObject);
             }
-            Vector3 position = new Vector3(0, -1f, 0);
-            Instantiate(Player, position, Quaternion.identity, transform);
         }
     }
 }

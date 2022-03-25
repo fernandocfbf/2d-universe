@@ -17,12 +17,14 @@ public class EnemySpawner : MonoBehaviour{
             foreach (Transform child in transform) {
                 GameObject.Destroy(child.gameObject);
             }
-            for(int i = 2; i < 9; i++){
+            Vector3 position = new Vector3(-9 + 1.75f * 2, 4 - 1.3f * 0);
+            Instantiate(Enemy, position, Quaternion.identity, transform);
+            /*for(int i = 2; i < 9; i++){
                 for(int j = 0; j < 4; j++){
                     Vector3 position = new Vector3(-9 + 1.75f * i, 4 - 1.3f * j);
                     Instantiate(Enemy, position, Quaternion.identity, transform);
                 }   
-            }
+            }*/
         }
     }
 }

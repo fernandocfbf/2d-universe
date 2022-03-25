@@ -39,7 +39,7 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
 
     public void Die(){
         gm.ChangeState(GameManager.GameState.LOSE);
-        Destroy(gameObject);
+        //Destroy(gameObject); always on the scene
     }
 
     void FixedUpdate(){

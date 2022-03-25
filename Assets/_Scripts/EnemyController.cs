@@ -38,7 +38,7 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
 
     private void FixedUpdate(){
         if (gm.gameState == GameManager.GameState.GAME){
-            angle += 0.05f;
+            angle += 0.5f;
             Mathf.Clamp(angle, 0.0f, 1.0f * Mathf.PI);
             float x = Mathf.Sin(angle);
             float y = Mathf.Cos(angle);
