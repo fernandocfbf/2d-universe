@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     Animator animator;
@@ -9,8 +11,11 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     public GameObject bullet;
     GameManager gm;
     public Transform gun01;
+    public Transform gun02;
+    public Transform gun03;
     public float shootDelay = 1.0f;
     private float lastShootTimestamp = 0.0f;
+    public int capsules = 0;
 
     public void Start(){
         animator = GetComponent<Animator>();
@@ -25,11 +30,25 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     public void Shoot(){
-        if(Time.time - lastShootTimestamp > shootDelay){
+        if(Time.time - lastShootTimestamp > shootDelay*GetCandecy(capsules)){
             AudioManager.PlaySFX(shootSFX);
             lastShootTimestamp = Time.time;
-            Instantiate(bullet, gun01.position, Quaternion.identity);
+
+            if(capsules == 0)
+                Instantiate(bullet, gun01.position, Quaternion.identity);
+            else {
+                Instantiate(bullet, gun02.position, Quaternion.identity);
+                Instantiate(bullet, gun03.position, Quaternion.identity);
+            }
         } 
+    }
+
+    private double GetCandecy(int capsules){
+        int remaining = capsules - 1;
+        if(remaining > 0){
+            return Math.Pow(0.9f, remaining);
+        }
+        return 1.0d;
     }
 
     public void TakeDamage(){

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //fonte: https://pressstart.vip/tutorials/2018/09/25/58/spawning-obstacles.html
-public class deployAsteroids : MonoBehaviour
+public class deployHearts : MonoBehaviour
 {   
     public GameObject asteroidPrefab;
-    public float respawnTime = 1.0f;
+    public float respawnTime = 2.0f;
     private Vector2 screenBounds;
+    
     GameManager gm;
     
     // Start is called before the first frame update
     void Start()
     {   
-        gm = GameManager.GetInstance();
+       gm = GameManager.GetInstance();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         StartCoroutine(asteroidWave());
     }
