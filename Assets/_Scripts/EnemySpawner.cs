@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour{
     public GameObject drone1Prefab;
     public GameObject drone2Prefab;
     public float respawnTime = 1.0f;
+    private float lastLevelTime = 0.0f;
     private Vector2 screenBounds;
     private GameObject randomPrefab;
     int randomMoviment;
@@ -50,6 +51,11 @@ public class EnemySpawner : MonoBehaviour{
         while(true){
             yield return new WaitForSeconds(respawnTime);
             if (gm.gameState == GameManager.GameState.GAME){
+                if (Time.time - lastLevelTime >= respawnTime &&
+                    respawnTime >= 0.5f){
+                    lastLevelTime = Time.time;
+                    respawnTime *= 0.99f;
+                }
                 SpawnEnemy();
             }
         }
