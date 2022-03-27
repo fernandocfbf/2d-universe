@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class ShotEnemyBehaviour : SteerableBehaviour
+public class ShotBossBehaviour : SteerableBehaviour
 {
 
   private Vector3 direction;
+  float angle = 0;
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
       if (collision.CompareTag("enemy") || collision.CompareTag("EnemyBullet")) return;
 
-      if (collision.CompareTag("Player Bullet")){
-        Destroy(gameObject);
+      if(collision.CompareTag("Player Bullet")){
+            Destroy(collision.gameObject);
       }
+
       IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
       if (!(damageable is null))
       {
           damageable.TakeDamage();
       }
       Destroy(gameObject);
-      
   }
 
   void Start()
@@ -33,8 +34,11 @@ public class ShotEnemyBehaviour : SteerableBehaviour
 
   void Update()
   {
-    
-    Thrust(direction.x, direction.y);
+    angle += 0.01f;
+    Mathf.Clamp(angle, 0.0f, 1.0f * Mathf.PI);
+    float x = Mathf.Sin(angle);
+    float y = Mathf.Cos(angle);
+    Thrust(direction.x + x, direction.y + y);
   }
 
   private void OnBecameInvisible()
