@@ -6,10 +6,12 @@ public class EnemySpawner : MonoBehaviour{
     public GameObject asteroidPrefab;
     public GameObject drone1Prefab;
     public GameObject drone2Prefab;
+    public GameObject bossPrefab;
     public float respawnTime = 1.0f;
     private float lastLevelTime = 0.0f;
     private Vector2 screenBounds;
     private GameObject randomPrefab;
+    private bool BossLevel = false; 
     int randomMoviment;
     GameManager gm;
 
@@ -51,10 +53,21 @@ public class EnemySpawner : MonoBehaviour{
         while(true){
             yield return new WaitForSeconds(respawnTime);
             if (gm.gameState == GameManager.GameState.GAME){
-                if (Time.time - lastLevelTime >= respawnTime &&
-                    respawnTime >= 0.5f){
+
+                Debug.Log(Time.time);
+                if (Time.time - lastLevelTime >= respawnTime && respawnTime >= 0.5f && Time.time < 300){
                     lastLevelTime = Time.time;
                     respawnTime *= 0.99f;
+                }
+
+                if(Time.time >= 300){
+                    respawnTime = 2.0f;
+                }
+
+                if (!BossLevel){
+                    GameObject a = Instantiate(bossPrefab) as GameObject;
+                    a.transform.position = new Vector2(screenBounds.x, 0);
+                    BossLevel = true;
                 }
                 SpawnEnemy();
             }
