@@ -181,7 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393878860e6c8f64b910cfdfb1861803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSFX: {fileID: 0}
+  ExplosionEffect: {fileID: 1236324314233070825, guid: abd8a7973006c634c8784395f3476cea, type: 3}
+  hitSFX: {fileID: 8300000, guid: e92ca31ac3614a94c9f6e8a1f3a3b82b, type: 3}
   speed: 10
 --- !u!114 &-5482029578896653237
 MonoBehaviour:
@@ -195,3 +196,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065e307e03904764eaf91f74c1de83a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootDelay: 1

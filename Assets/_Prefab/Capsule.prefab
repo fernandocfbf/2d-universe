@@ -164,5 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f2c79891e16884c905646464c37584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capsuleSFX: {fileID: 8300000, guid: eeec087a3583bea439edcaaa531874f4, type: 3}
   speed: 2
   rotateSpeed: 1

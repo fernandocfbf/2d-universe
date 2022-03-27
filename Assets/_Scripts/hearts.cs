@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class hearts : MonoBehaviour
 {
+    public AudioClip lifeSFX;
     GameManager gm;
     public float speed = 2.0f;
     private Rigidbody2D rb;
@@ -28,8 +29,10 @@ public class hearts : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("Player")){
-            Destroy(gameObject);
+            AudioManager.PlaySFX(lifeSFX);
             gm.lifes ++;
+            Destroy(gameObject);
+            
         }
     }
 }

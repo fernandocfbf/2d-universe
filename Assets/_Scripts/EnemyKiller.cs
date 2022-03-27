@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyKiller : MonoBehaviour
 {
     //velocidade
+    public GameObject ExplosionEffect;
     public AudioClip hitSFX;
     public float speed = 10.0f;
     private Rigidbody2D rb;
@@ -28,8 +29,10 @@ public class EnemyKiller : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("Player Bullet")){
             AudioManager.PlaySFX(hitSFX);
+            GameObject explosion =Instantiate(ExplosionEffect,transform.position,transform.rotation);
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            Destroy(explosion,2);
             
         }
     }
