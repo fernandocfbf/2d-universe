@@ -9,13 +9,16 @@ public class ShotEnemyBehaviour : SteerableBehaviour
   private void OnTriggerEnter2D(Collider2D collision)
   {
       if (collision.CompareTag("enemy")) return;
-
+      if (collision.CompareTag("Player Bullet")){
+        Destroy(gameObject);
+      }
       IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
       if (!(damageable is null))
       {
           damageable.TakeDamage();
       }
       Destroy(gameObject);
+      
   }
 
   void Start()
