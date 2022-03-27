@@ -65,8 +65,23 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
         if (gm.gameState != GameManager.GameState.GAME) return;
         float yInput = Input.GetAxis("Vertical");
         float xInput = Input.GetAxis("Horizontal");
+        CheckPlayerPosition();
         Thrust(xInput, yInput);
-        currentPosition = new Vector3(xInput, yInput, 0);
+        
+    }
+
+    void CheckPlayerPosition(){
+        float screen_size_y=5.0f;
+        float screen_size_x=7.0f;
+        if (transform.position.y <= -screen_size_y)
+            transform.position = new Vector3(transform.position.x, -screen_size_y, transform.position.z);
+        else if (transform.position.y >=screen_size_y)
+            transform.position = new Vector3(transform.position.x, screen_size_y - 0.3f, transform.position.z);
+
+        if (transform.position.x <= -screen_size_x)
+            transform.position = new Vector3(-screen_size_x, transform.position.y, transform.position.z);
+        else if (transform.position.x >= screen_size_x)
+            transform.position = new Vector3(screen_size_x, transform.position.y, transform.position.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
