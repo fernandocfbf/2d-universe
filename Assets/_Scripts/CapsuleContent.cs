@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CapsuleContent : MonoBehaviour{
+    public AudioClip capsuleSFX;
     GameManager gm;
     public float speed = 2.0f;
     public float rotateSpeed = 10.0f;
@@ -25,6 +26,7 @@ public class CapsuleContent : MonoBehaviour{
 
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("Player")){
+            AudioManager.PlaySFX(capsuleSFX);
             Player = GameObject.FindWithTag("Player");
             Player.GetComponent<PlayerController>().capsules ++;
             Destroy(gameObject);

@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393878860e6c8f64b910cfdfb1861803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionEffect: {fileID: 1236324314233070825, guid: abd8a7973006c634c8784395f3476cea, type: 3}
   hitSFX: {fileID: 8300000, guid: 2be9f7d24d77c7f4eb997c7e78dde54e, type: 3}
   speed: 2
 --- !u!82 &486209290814975344
