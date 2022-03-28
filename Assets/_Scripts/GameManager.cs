@@ -38,12 +38,14 @@ public class GameManager{
         }
 
         else Time.timeScale = 1.0f;
-        
+
         gameState = nextState;
         changeStateDelegate();
     }
 
     private void Reset(){
+        GameObject Player = GameObject.FindWithTag("Player");
+        Player.GetComponent<PlayerController>().capsules = 0;
         lifes = 3;
         points = 0;
     }

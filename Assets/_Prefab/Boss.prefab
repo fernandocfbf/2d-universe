@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6871434985276088933}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.6}
+  m_Size: {x: 0.4, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &1328859443737362611
 MonoBehaviour:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   td: {fileID: 11400000, guid: 186f62bf5ea4def42a8a76793e1155c0, type: 2}
-  BossLifes: 5
+  BossLifes: 250
   tiro: {fileID: 1429512463280094644, guid: c0ad8c1ebef8e1041b6f28996c6797aa, type: 3}
 --- !u!114 &6871434985276088933
 MonoBehaviour:
