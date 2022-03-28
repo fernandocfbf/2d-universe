@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossController : SteerableBehaviour, IShooter, IDamageable{
 
-    public int BossLifes = 500;
+    public int BossLifes = 250;
     public GameObject tiro;
     Animator animator;
     float angle = 0;
