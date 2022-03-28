@@ -6344,6 +6344,7 @@ MonoBehaviour:
   asteroidPrefab: {fileID: 7614849250302030383, guid: dbdb2736c752cae46a094723eed8e145, type: 3}
   drone1Prefab: {fileID: 1002542740015169148, guid: 0948a139e550c03419a06870aa35d05c, type: 3}
   drone2Prefab: {fileID: 7846403145913353693, guid: 8389b0fd156ad6c4a96311ee082f9b15, type: 3}
+  bossPrefab: {fileID: 4066948804589350712, guid: a656816e3fcb9d343a407056846ab541, type: 3}
   respawnTime: 2
 --- !u!4 &1693187210
 Transform:
@@ -6492,7 +6493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0de7af6ad662740b351c40cd608762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidPrefab: {fileID: 7614849250302030383, guid: 9f5ba4817eba84f4897d2656bf0fbaaf, type: 3}
+  heartPrefab: {fileID: 0}
   respawnTime: 5
 --- !u!4 &1809581252
 Transform:
