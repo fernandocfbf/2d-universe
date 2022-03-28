@@ -19,6 +19,8 @@ public class GameManager{
     }
 
     private GameManager(){
+        GameObject Player = GameObject.FindWithTag("Player");
+        Player.GetComponent<PlayerController>().capsules = 0;
         lifes = 3;
         points = 0;
         gameState = GameState.MENU;
@@ -38,7 +40,7 @@ public class GameManager{
         }
 
         else Time.timeScale = 1.0f;
-        
+
         gameState = nextState;
         changeStateDelegate();
     }
