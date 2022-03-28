@@ -8,7 +8,8 @@ public class ShotEnemyBehaviour : SteerableBehaviour
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
-      if (collision.CompareTag("enemy")) return;
+      if (collision.CompareTag("enemy") || collision.CompareTag("EnemyBullet")) return;
+
       if (collision.CompareTag("Player Bullet")){
         Destroy(gameObject);
       }

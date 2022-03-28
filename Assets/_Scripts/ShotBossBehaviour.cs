@@ -9,7 +9,11 @@ public class ShotBossBehaviour : SteerableBehaviour
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
-      if (collision.CompareTag("enemy")) return;
+      if (collision.CompareTag("enemy") || collision.CompareTag("EnemyBullet")) return;
+
+      if(collision.CompareTag("Player Bullet")){
+            Destroy(collision.gameObject);
+      }
 
       IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
       if (!(damageable is null))
