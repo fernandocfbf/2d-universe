@@ -15,12 +15,15 @@ public class ShotBehaviour : SteerableBehaviour{
             posicaoViewport.y < 0 ||
             posicaoViewport.y > 1
         ){
+            Debug.Log("HERE");
             Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.CompareTag("Player")) return;
+        if (collision.CompareTag("Player") || collision.CompareTag("Player Bullet")){
+            return;
+        } 
         IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
         if(!(damageable is null)){
             damageable.TakeDamage();

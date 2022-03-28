@@ -20,8 +20,7 @@ public class CapsuleSpawner : MonoBehaviour{
     }
 
     private int TryLucky(){
-        int randomNumber = Random.Range(0, 2); //10% of chance
-        Debug.Log(randomNumber); 
+        int randomNumber = Random.Range(0, 11); //10% of chance
         if (randomNumber == 1) return 1;
         return 0;
     }

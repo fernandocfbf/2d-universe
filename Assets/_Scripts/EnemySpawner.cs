@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour{
         gm = GameManager.GetInstance();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         GameManager.changeStateDelegate += CleanAndStart;
-        CleanAndStart();
     }
 
     private void SpawnEnemy(){
@@ -34,6 +33,14 @@ public class EnemySpawner : MonoBehaviour{
                 GameObject.Destroy(child.gameObject);
             }
             StartCoroutine(GenerateWaves());
+            respawnTime = 2.0f;
+        }
+    }
+
+    void CleanAll(){
+        if (gm.gameState == GameManager.GameState.MENU){
+            GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("enemy"); 
+            Destroy(GameObject.FindWithTag("enemy"));
         }
     }
 
@@ -53,21 +60,15 @@ public class EnemySpawner : MonoBehaviour{
         while(true){
             yield return new WaitForSeconds(respawnTime);
             if (gm.gameState == GameManager.GameState.GAME){
-
-                Debug.Log(Time.time);
                 if (Time.time - lastLevelTime >= respawnTime && respawnTime >= 0.5f && Time.time < 300){
                     lastLevelTime = Time.time;
-                    respawnTime *= 0.99f;
+                    respawnTime *= 0.985f;
                 }
-
-                if(Time.time >= 300){
-                    respawnTime = 2.0f;
-                }
-
-                if (!BossLevel){
+                if (Time.time > 10 && !BossLevel){
                     GameObject a = Instantiate(bossPrefab) as GameObject;
                     a.transform.position = new Vector2(screenBounds.x, 0);
                     BossLevel = true;
+                    respawnTime = 1.0f;
                 }
                 SpawnEnemy();
             }

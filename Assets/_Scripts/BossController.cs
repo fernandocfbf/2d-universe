@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossController : SteerableBehaviour, IShooter, IDamageable{
 
-    public int BossLifes = 5;
+    public int BossLifes = 250;
     public GameObject tiro;
     Animator animator;
     float angle = 0;
@@ -15,15 +15,18 @@ public class BossController : SteerableBehaviour, IShooter, IDamageable{
         gm = GameManager.GetInstance();
     }
 
-    public void Shoot()
-    {
-        Instantiate(tiro, new Vector3(transform.position.x-1.5f, transform.position.y+0.10f, transform.position.z), Quaternion.identity);
-        Instantiate(tiro, new Vector3(transform.position.x-1.5f, transform.position.y-0.10f, transform.position.z), Quaternion.identity);
+    public void Shoot(){
+
+        if(BossLifes < 100){
+            Instantiate(tiro, new Vector3(transform.position.x-3.0f, transform.position.y+0.40f, transform.position.z), Quaternion.identity);
+            Instantiate(tiro, new Vector3(transform.position.x-3.0f, transform.position.y-0.40f, transform.position.z), Quaternion.identity);
+        }
+        Instantiate(tiro, new Vector3(transform.position.x-1.5f, transform.position.y+0.80f, transform.position.z), Quaternion.identity);
+        Instantiate(tiro, new Vector3(transform.position.x-1.5f, transform.position.y-0.80f, transform.position.z), Quaternion.identity);
     }
 
     public void TakeDamage(){
         BossLifes --;
-        Debug.Log(BossLifes);
         if (BossLifes <= 0){
             Die();
         }
