@@ -33,12 +33,12 @@ public class CheckAndDestroy : MonoBehaviour{
     }
 
     void CheckForDestroy(){
-        Debug.Log(previous);
-        Debug.Log(next);
-        
+
+        previous=next; 
+        next=gm.gameState;
         
         //reset
-        if (previous == GameManager.GameState.GAME && next == GameManager.GameState.LOSE){
+        if (previous == GameManager.GameState.LOSE && next == GameManager.GameState.GAME){
             DestroyAll();
         }
 
@@ -51,8 +51,8 @@ public class CheckAndDestroy : MonoBehaviour{
         if (previous == GameManager.GameState.LOSE && next == GameManager.GameState.MENU){
             DestroyAll();
         }
-
-        previous=next; 
-        next = gm.gameState;
+        if(previous == GameManager.GameState.GAME && next == GameManager.GameState.VICTORY){
+            DestroyAll();
+        }
     }
 }
