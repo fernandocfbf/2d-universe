@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour{
                     lastLevelTime = Time.time;
                     respawnTime *= 0.985f;
                 }
-                if (Time.time > 10 && !BossLevel){
+                if (Time.time > 100 && !BossLevel){
                     GameObject a = Instantiate(bossPrefab) as GameObject;
                     a.transform.position = new Vector2(screenBounds.x, 0);
                     BossLevel = true;

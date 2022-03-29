@@ -24,6 +24,7 @@ public class ShotBehaviour : SteerableBehaviour{
         if (collision.CompareTag("Player") || collision.CompareTag("Player Bullet")){
             return;
         } 
+        if(collision.CompareTag("EnemyBullet")) return;
         IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
         if(!(damageable is null)){
             damageable.TakeDamage();
